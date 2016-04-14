@@ -14,10 +14,17 @@
             <div id="messagebox" style="margin-top:10px;padding:10px;background-color: lightgray;"></div>
         </div>
         <div style="padding:10px">
-            <form name="input" action="/cgipage/samples" method="post">
+            <form name="input" action="/cgipage/samples?alert=1" method="post">
                 Username: 
                 <input type="text" name="user" />
                 <input type="submit" value="Submit" />
+            </form>
+        </div>
+        <div style="padding:10px">
+            <form action="/cgipage/samples?upload=1" method="post" enctype='multipart/form-data'>
+                <label for="resource">上传文档</label>
+                <input type="file" id="resource" name="resource">
+                <button type="submit">上传</button>
             </form>
         </div>
         <div style="padding:10px">

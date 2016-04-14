@@ -5,6 +5,7 @@
     npm install mime
     npm install mysql
     npm install art-template
+    npm install formidable
 */
 
 var http = require('http');
@@ -218,6 +219,23 @@ var serverPageResponser = function on(target,request,response) {
 
 var receiveFormData = function on(request,callback) {
     var postData = '';
+    //如果当前请求的content-type是multipart/form-data ，则表示当前POST请求要上传文件,使用formidable插件来接收当前表单
+    if (request.headers['content-type'] && request.headers['content-type'].indexOf('multipart/form-data;') > -1) {
+        var formidable = require('formidable');
+        var mutiform = new formidable.IncomingForm();
+        // form.parse analyzes the incoming stream data, picking apart the different fields and files for you.
+        mutiform.parse(request, function(err, fields, files) {
+            if (err) {
+                // Check for and handle any errors here.
+                console.error(err.message);
+                if (callback) { callback(querystring.parse(postData)); };
+                return;
+            }
+            if (callback) { callback(files); }
+        });
+        return;
+    }
+    
     //开始POST数据接收
     request.addListener("data", function (postDataChunk) {
         postData += postDataChunk;

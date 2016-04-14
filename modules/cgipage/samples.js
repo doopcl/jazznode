@@ -12,9 +12,24 @@ exports.module = {
         };
         var html = this.utils.templateRender('/static/temp/tmp_samples',data);
 
-        if (this.postData) {
+        if (this.query['upload'] == '1' && this.postData["resource"]) {
+            // console.log(this.postData["resource"].path);
+            var fs = require('fs');
+            fs.rename(this.postData["resource"].path,this.utils.getDirectoryPath('upload/' + this.postData["resource"].name),function on(err){
+                if (err) {
+                    console.log(err);
+                } else {
+                    html += '<script> alert(\'upload success\'); </script>';
+                }
+                exports.module.callback(html);
+            });
+            return;
+        }
+        
+        if (this.query['alert'] == '1' && this.postData) {
             html += '<script> alert(\'' + this.postData['user'] + '\'); </script>';
         };
+
         exports.module.callback(html);
     },
     //分割线，以上成员为module的必要成员，每个module都必须存在
