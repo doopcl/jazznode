@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <title>{{title}}</title>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+    </head>
+    <body>
+        <div style="background-color:17baef;color:white;padding:6px;">JazzNode Server Page Sample</div>
+        <div style="padding:10px">
+            用户ID：
+            <input id="useridbox" type="text" />
+            <button id="getinfo" type="button">{{buttonTitle}}</button>
+            <div id="messagebox" style="margin-top:10px;padding:10px;background-color: lightgray;"></div>
+        </div>
+        <div style="padding:10px">
+            <form name="input" action="/cgipage/samples" method="post">
+                Username: 
+                <input type="text" name="user" />
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+        <div style="padding:10px">
+            使用JazzNode开发web站点，我们推荐在静态页面上使用javascript来请求对应的数据接口并显示，这既符合现今前沿的开发模式，也能使各个模块独立，并且能避免在server端编写繁杂的逻辑。虽然JazzNode也支持传统的开发模式，但从开发复杂度来说，我们不太建议。
+        </div>
+    </body>
+</html>
+<script>
+    $(document).ready(function(){
+        $("#getinfo").click(function(){
+            var action = '/users/info?userid=' + $("#useridbox").val();
+            $.get(action, function(result) {
+                $("#messagebox").html(JSON.stringify(result));
+            });
+        })
+    });
+</script>
