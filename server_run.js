@@ -6,6 +6,7 @@
     npm install mysql
     npm install art-template
     npm install formidable
+    npm install cookies
 */
 
 var http = require('http');
@@ -15,6 +16,7 @@ var querystring = require("querystring");
 //开发工具类
 var utils = require('./utils.js').utils;
 var mime = require('mime');
+var Cookies = require('cookies');
 
 //route map
 var routeMap = require('./configs/routes.js').routes;
@@ -42,11 +44,8 @@ http.createServer( function (request, response) {
         case 'static':
             staticResponser(utils.getDirectoryPath(routeInfo.target),response);
         break;
-        case 'serverpage':
-            serverPageResponser(utils.getDirectoryPath(routeInfo.target),request,response);
-        break;
         case 'cgi':
-            moduleResponser(utils.getDirectoryPath(routeInfo.target),request,response);
+            cgiResponser(utils.getDirectoryPath(routeInfo.target),request,response);
         break;
     }
 }).listen(port);
@@ -149,46 +148,8 @@ var staticResponser = function on(target,response) {
     });
 };
 
-//RESTful API请求响应器
-var moduleResponser = function on(target,request,response) {
-    //内部子函数放在最顶部
-    var excuteModule = function on() {
-        action.module.excute(function on(result, code, err) {
-            var responseModal = require('./modals/responseModal.js').modal;
-            responseModal.code = 0;
-            responseModal.data = [];
-            responseModal.errMsg = null;
-
-            if (result) {
-                if (code) { responseModal.code = code; }
-                if (err) {responseModal.errMsg = err; }
-                responseModal.data = result;
-                responseOK(JSON.stringify(responseModal),response);
-            } else {
-                var errInfo = require('./modals/responseErrModal.js').modal;
-                errInfo.code = 500;
-                errInfo.errMsg = 'UNKNOWN SERVER ERROR';
-                errInfo.content = err;
-                responseErr(errInfo,response);
-            }
-        });
-    };
-
-    var action = require(target);
-    action.module.query = getQueryString(request);
-
-    if (request.method == "POST") {
-         receiveFormData(request,function on(postData){
-            action.module.postData = postData;
-            excuteModule();
-        });
-    } else {
-        excuteModule();
-    }
-};
-
-//动态页面请求响应器
-var serverPageResponser = function on(target,request,response) {
+//cgi请求响应器
+var cgiResponser = function on(target,request,response) {
     //内部子函数放在最顶部
     var excuteModule = function on() {
         action.module.excute(function on(result, code, err) {
@@ -206,6 +167,7 @@ var serverPageResponser = function on(target,request,response) {
 
     var action = require(target);
     action.module.query = getQueryString(request);
+    action.module.cookies = new Cookies(request,response);
 
     if (request.method == "POST") {
         receiveFormData(request,function on(postData){

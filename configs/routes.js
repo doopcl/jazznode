@@ -9,7 +9,7 @@ exports.routes = {
         }
     },
     'cgipage':{
-        'type':'serverpage',
+        'type':'cgi',
         'module':{
             'default':'modules/cgipage/samples.js',
             'samples':'modules/cgipage/samples.js',
