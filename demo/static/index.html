@@ -11,8 +11,8 @@
     <meta name="description" content="">
     <meta name="author" content="">    
     <link rel="shortcut icon" href="favicon.ico">  
-    <link href='http://fonts.useso.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
+<!--     <link href='http://fonts.useso.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>  -->
     <!-- Global CSS -->
     <link rel="stylesheet" href="demo_assets/plugins/bootstrap/css/bootstrap.min.css">
     <!-- Plugins CSS -->    
@@ -49,10 +49,10 @@
                     <ul class="nav navbar-nav">
                         <li class="active nav-item sr-only"><a class="scrollto" href="#promo">Home</a></li>
                         <li class="nav-item"><a class="scrollto" href="#about">关于</a></li>
-                        <li class="nav-item"><a class="scrollto" href="#features">Features</a></li>
-                        <li class="nav-item"><a class="scrollto" href="#docs">文档</a></li>
-                        <li class="nav-item"><a class="scrollto" href="#license">License</a></li>                        
-                        <li class="nav-item last"><a class="scrollto" href="#contact">联系我们</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#features">目标人群</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#docs">如何开始</a></li>
+<!--                         <li class="nav-item"><a class="scrollto" href="#license">License</a></li>                   -->      
+                        <li class="nav-item last"><a class="scrollto" href="#contact">联系作者</a></li>
                     </ul><!--//nav-->
                 </div><!--//navabr-collapse-->
             </nav><!--//main-nav-->
@@ -94,15 +94,16 @@
     <section id="about" class="about section">
         <div class="container">
             <h2 class="title text-center">What is JazzNode?</h2>
-            <p class="intro text-center">Explain your project in detail. Ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
+            <p class="intro text-center">JazzNode是一款基于Node.js平台的Web服务开发框架，目前已经实现了传统Web Server的基本功能，开发者可以在JazzNode上直接开发面向业务的功能，并且JazzNode
+                已经支持route特性，所以可以自由的定制站点的URI</p>
             <div class="row">
                 <div class="item col-md-4 col-sm-6 col-xs-12">
                     <div class="icon-holder">
                         <i class="fa fa-heart"></i>
                     </div>
                     <div class="content">
-                        <h3 class="sub-title">Designed for developers</h3>
-                        <p>Outline a benefit here. Tell users what your plugin/software can do for them. You can change the icon above to any of the 400+ <a href="http://sc.chinaz.com" target="_blank">FontAwesome</a> icons available.</p>
+                        <h3 class="sub-title">最低学习成本</h3>
+                        <p>JazzNode使用原生Node.js和少量第三方功能性组件，并未提供深度封装的功能函数，适用于Node.js初学者观摩并快速创建自己的Web应用服务</p>
                     </div><!--//content-->
                 </div><!--//item-->
                 <div class="item col-md-4 col-sm-6 col-xs-12">
@@ -110,8 +111,8 @@
                         <i class="fa fa-clock-o"></i>
                     </div>
                     <div class="content">
-                        <h3 class="sub-title">Time saver</h3>
-                        <p>Outline a benefit here. Tell users what your plugin/software can do for them. You can change the icon above to any of the 400+ <a href="http://sc.chinaz.com" target="_blank">FontAwesome</a> icons available.</p>
+                        <h3 class="sub-title">快速构建服务</h3>
+                        <p>JazzNode已实现传统Web Server的基本功能，开发者如没有特殊需求则无需再关注Web Server的实现，可以直接将注意力放在业务的实现上</p>
                     </div><!--//content-->
                 </div><!--//item-->
                 <div class="item col-md-4 col-sm-6 col-xs-12">
@@ -119,8 +120,9 @@
                         <i class="fa fa-crosshairs"></i>
                     </div>
                     <div class="content">
-                        <h3 class="sub-title">UX-centred</h3>
-                        <p>Outline a benefit here. Tell users what your plugin/software can do for them. You can change the icon above to any of the 400+ <a href="http://sc.chinaz.com" target="_blank">FontAwesome</a> icons available.</p>
+                        <h3 class="sub-title">模板引擎支持</h3>
+                        <p>引用最为高效的知名第三方模板art-template组件，开发Server Page毫无压力，PHP,ASP等传统模式web开发者也能轻易hold住，点击查看：<a href="https://github.com/aui/artTemplate" target="_blank">artTemplate</a>
+                        </p>
                     </div><!--//content-->
                 </div><!--//item-->           
                 <div class="clearfix visible-md"></div>    
@@ -129,8 +131,8 @@
                         <i class="fa fa-tablet"></i>
                     </div>
                     <div class="content">
-                        <h3 class="sub-title">Mobile-friendly</h3>
-                        <p>Outline a benefit here. Tell users what your plugin/software can do for them. You can change the icon above to any of the 400+ <a href="http://sc.chinaz.com" target="_blank">FontAwesome</a> icons available.</p>
+                        <h3 class="sub-title">移动APP Server利器</h3>
+                        <p>最快速编写RESTful API Web Service，JazzNode的route设计天然支持编写通用URI风格的API接口，外加Javascript天然优势，返回JSON格式变得容易</p>
                     </div><!--//content-->
                 </div><!--//item-->                
                 <div class="item col-md-4 col-sm-6 col-xs-12">
@@ -138,8 +140,8 @@
                         <i class="fa fa-code"></i>
                     </div>
                     <div class="content">
-                        <h3 class="sub-title">Easy to customise</h3>
-                        <p>Outline a benefit here. Tell users what your plugin/software can do for them. You can change the icon above to any of the 400+ <a href="http://sc.chinaz.com" target="_blank">FontAwesome</a> icons available.</p>
+                        <h3 class="sub-title">简单快捷自定义</h3>
+                        <p>简单易懂的route配置，可以按自己所想定制URI，简易化的访问权限配置，在安全和灵活之间自由选择，没有复杂的调用关系，没有严格的架构约束，只是为了开发者可以快速上手</p>
                     </div><!--//content-->
                 </div><!--//item-->
                 <div class="item col-md-4 col-sm-6 col-xs-12">
@@ -147,8 +149,8 @@
                         <i class="fa fa-coffee"></i>
                     </div>
                     <div class="content">
-                        <h3 class="sub-title">LESS files included</h3>
-                        <p>Outline a benefit here. Tell users what your plugin/software can do for them. You can change the icon above to any of the 400+ <a href="http://sc.chinaz.com" target="_blank">FontAwesome</a> icons available.</p>
+                        <h3 class="sub-title">环境搭建简单</h3>
+                        <p>JazzNode所需的环境搭建也十分容易，只需要安装Node.js环境，以及几条npm命令行，就可以完成web服务的搭建，门槛低，任何背景的初学者都能完成</p>
                     </div><!--//content-->
                 </div><!--//item-->               
             </div><!--//row-->            
@@ -158,15 +160,15 @@
     <!-- ******FEATURES****** --> 
     <section id="features" class="features section">
         <div class="container text-center">
-            <h2 class="title">Features</h2>
+            <h2 class="title">目标人群</h2>
             <ul class="feature-list list-unstyled">
-                <li><i class="fa fa-check"></i> Fully responsive</li>
-                <li><i class="fa fa-check"></i> HTML5 + CSS3</li>
-                <li><i class="fa fa-check"></i> Built on <a href="http://sc.chinaz.com" target="_blank">Bootstrap 3.3</a></li>
-                <li><i class="fa fa-check"></i> 400+ FontAwesome icons</li>
-                <li><i class="fa fa-check"></i> 4 colour schemes</li>
-                <li><i class="fa fa-check"></i> LESS files included</li>
-                <li><i class="fa fa-check"></i> Compatible with all modern browsers</li>
+                <li><i class="fa fa-check"></i> Node.js初学者</li>
+                <li><i class="fa fa-check"></i> 熟悉javascript的前端开发者</li>
+                <li><i class="fa fa-check"></i> 轻量级web服务和移动APP Server</li>
+                <li><i class="fa fa-check"></i> 猎奇者</li>
+                <li><i class="fa fa-check"></i> XXXXXXXXXX</li>
+                <li><i class="fa fa-check"></i> XXXXXXXXXX</li>
+                <li><i class="fa fa-check"></i> XXXXXXXXXX</li>
             </ul>
         </div><!--//container-->
     </section><!--//features-->
@@ -175,68 +177,84 @@
     <section id="docs" class="docs section">
         <div class="container">
             <div class="docs-inner">
-            <h2 class="title text-center">Get Started</h2>            
+            <h2 class="title text-center">如何开始</h2>            
             <div class="block">
-                <h3 class="sub-title text-center">HTML</h3>
-                <p><a href="http://sc.chinaz.com" target="_blank">PrismJS</a> is used as the syntax highlighter here.</p>
-                <p>Below are the details of the custom PrismJS build used in this template. You can <a href="http://sc.chinaz.com" target="_blank">build your own version</a> via their website should you need to.</p>
-                <ul class="list-unstyled">
+                <h3 class="sub-title text-center">环境搭建</h3>
+                <p>点击下载：<a href="https://nodejs.org/en/" target="_blank">Nodejs.org</a> 并安装</p>
+                <p>安装的内容包括Node.js运行环境和npm包管理工具</p>
+                <p>接下来在终端界面使用npm安装以下组件，全部安装完成之后，环境搭建就完成了</p>
+<!--                 <ul class="list-unstyled">
                     <li><strong>Compression level:</strong> Minified</li>
                     <li><strong>Theme:</strong> Okaidia</li>
                     <li><strong>Languages:</strong> Markup, CSS, C-like, JavaScript, PHP and Python</li>
-                </ul>
+                </ul> -->
                 <div class="code-block">
                     <pre><code class="language-markup">
-    &ltp class="my-style"&gt
-      Hello World!
-    &lt/p&gt
+    npm install mime
+    npm install mysql
+    npm install art-template
+    npm install formidable
+    npm install cookies
                      </code></pre>
                 </div><!--//code-block-->
             </div><!--//block-->
             
             <div class="block">
-                <h3 class="sub-title text-center">CSS</h3>
-                <p>Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</p>
+                <h3 class="sub-title text-center">运行服务</h3>
+                <p>Node.js的web服务运行方式为node命令执行包含http.createServer的js代码文件，所以在JazzNode中，运行server_run.js即可运行</p>
                 
                 <div class="code-block">
                     <pre>
-    <code class="language-css">
-    /*   
-     * Template Name: devAid - Responsive Website Template for developers
-     * Version: 1.0
-     * Author: Xiaoying Riley at 3rd Wave Media
-     * Website: #
-     * Twitter: @3rdwave_themes
-    */
-    body {
-      font-family: 'Lato', arial, sans-serif;
-      color: #444444;
-      font-size: 16px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+    <!-- <code class="language-css"> -->
+    <code class="language-markup"> 
+    node github/jazznode/server_run.js
     </code></pre>
                 </div><!--//code-block-->
             </div><!--//block-->
             
             <div class="block">
-                <h3 class="sub-title text-center">JavaScript</h3>
-                <p>Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit ligula eget dolor.</p>
+                <h3 class="sub-title text-center">route配置文件</h3>
+                <p>route配置文件是决定对不同请求如何响应的关键配置，JazzNode目前支持二级目录的路由配置</p>
                 <div class="code-block">
                     <pre><code class="language-javascript">
-    if( awesome ){
-        console.log('This is Awesome');
-    }else{
-        $('body').addClass('give-me-awesome');
+    exports.routes = {
+        '':{
+            'type':'static',
+            'module':{
+                'default':'demo/static/index.html',//保留字段
+                'index':'demo/static/index.html',
+                'favicon.ico':'demo/static/favicon.ico'
+            }
+        },
+        'cgipage':{
+            'type':'cgi',
+            'module':{
+                'default':'demo/modules/cgipage/samples.js',
+                'samples':'demo/modules/cgipage/samples.js',
+                'samples2':'demo/modules/cgipage/samples2.js'
+            }
+        },
+        'users':{
+            'type':'cgi',
+            'module':{
+                'info':'demo/modules/users/getuserinfo.js',
+                'list':'demo/modules/users/getuserlist.js'
+            }
+        },
+        'demo_assets':{
+            'type':'static',
+            'module':{},
+            'restrict':false
+        }
     }
                     </code></pre>
                 </div><!--//code-block-->
             </div><!--//block-->   
             <div class="block">
-                <h3 class="sub-title text-center">Full Documentation</h3>
-                <p>If your documentation is very long you can host the full docs page (including FAQ etc) on GitHub and provide a Call to Action button below to direct users there.</p>
+                <h3 class="sub-title text-center">全部文档</h3>
+                <p>以上是JazzNode的简要文档，想要深入了解，请访问JazzNode的GitHub主页</p>
                 <p class="text-center">
-                    <a class="btn btn-cta-primary" href="http://sc.chinaz.com" target="_blank">More on GitHub</a>
+                    <a class="btn btn-cta-primary" href="https://github.com/doopcl/jazznode" target="_blank">More on GitHub</a>
                 </p>
             </div><!--//block-->
             
@@ -244,59 +262,29 @@
         </div><!--//container-->
     </section><!--//features-->
     
-    <!-- ******LICENSE****** --> 
-    <section id="license" class="license section">
-        <div class="container">
-            <div class="license-inner">
-            <h2 class="title text-center">License</h2>
-                <div class="info">
-                    <p>This Bootstrap theme is made by UX designer <a href="http://sc.chinaz.com" target="_blank">Xiaoying Riley</a> at 3rd Wave Media for developers and is <strong>100% FREE</strong> under the <a href="http://sc.chinaz.com" target="_blank">Creative Commons Attribution 3.0 License (CC BY 3.0)</a></p>
-                    <p><strong>[Tip for developers]:</strong> If your project is open source, you might want to put a <a href="http://sc.chinaz.com" target="_blank">PayPal "Donate" button</a> below so your users can express their gratitude. If your project is commercial, you can put a <a href="http://sc.chinaz.com" target="_blank">PayPal "Buy Now" button</a> instead.</p>
-                </div><!--//info-->
-                <div class="cta-container">
-                    <div class="speech-bubble">                    
-                        <p class="intro">If you are feeling generous and want to show your support to Xiaoying, you can buy her a beer or coffee via the PayPal donate button below. :)</p>
-                        <div class="icon-holder  text-center"><i class="fa fa-smile-o"></i></div>
-                    </div><!--//speech-bubble-->
-                    <div class="btn-container  text-center">
-                        <!--PayPal generated code starts-->
-                        <form action="http://sc.chinaz.com" method="post" target="_top">
-                        <input type="hidden" name="cmd" value="_s-xclick">
-                        <input type="hidden" name="hosted_button_id" value="Y46LJNXGAVVWW">
-                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                        <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-                        </form>
-                        <!--//PayPal generated code ends-->                    
-                        
-                    </div><!--//btn-container-->
-                </div><!--//cta-container-->
-            </div><!--//license-inner-->
-        </div><!--//container-->
-    </section><!--//how-->
-    
     <!-- ******CONTACT****** --> 
     <section id="contact" class="contact section has-pattern">
         <div class="container">
             <div class="contact-inner">
-                <h2 class="title  text-center">Contact</h2>
-                <p class="intro  text-center">I hope you find this Bootstrap template useful. <br />Feel free to get in touch if you have any questions or suggestions.</p>
+                <h2 class="title  text-center">联系作者</h2>
+                <p class="intro  text-center">希望我的分享可以给各位带来帮助（拯救世界，哈哈哈） <br />希望各路大神前来吐槽，给出中肯意见（给兄弟一个提高的机会）</p>
                 <div class="author-message">                      
                     <div class="profile">
-                        <img class="img-responsive" src="demo_assets/images/profile.png" alt="" />
+                        <img class="img-responsive" src="http://tp3.sinaimg.cn/1093261034/180/5645884966/1" alt="" />
                     </div><!--//profile-->
                     <div class="speech-bubble">
-                        <h3 class="sub-title">Want to get more freebies in the future?</h3>
-                        <p>I tweet about #UX and #webdev related resources/content at <a href="http://sc.chinaz.com" target="_blank">@3rdwave_themes</a> 
-                        <p>If you like what I do, you can follow me on twitter and I will keep you informed about my next free template there :)</p>
-                        <p><strong>[Tip for developers]:</strong> If you take on freelance work you can put a tailored message here about your availability to attract potential clients. Be creative and good luck!</p> 
+                        <h3 class="sub-title">各位大神们好，我是蔡龙（Jayce Tsai）?</h3>
+                        <p>大家可以关注我的weibo <a href="http://weibo.com/doopcl" target="_blank">@doopcl</a> 
+                        <p>该项目是我处于半失业的低谷状态下，为了让自己不至于无所事事，被世界所抛弃，于是乎在涉猎并迷上了Node.js之后，启动了这个小型的项目，虽然做的是小东西，却也有一颗不甘平凡的心，希望能给大家带来一些价值，谢谢</p>
+                        <p><strong>[友情提示]:</strong>项目刚刚起步，很多场景未能探寻到，所以本着严谨负责的态度，暂不建议用于商业用途，以免造成不可控的损失，如果有好心者经过尝试，确认可以在某些商业场景下使用，欢迎分享，不胜感激</p> 
                         <div class="source">
-                            <span class="name"><a href="http://sc.chinaz.com" target="_blank">Xiaoying Riley</a></span>
+                            <span class="name"><a href="http://sc.chinaz.com" target="_blank">Jayce Tsai</a></span>
                             <br />
-                            <span class="title">UX/UI Designer</span>
+                            <span class="title">Freedom Developer Engineer</span>
                         </div><!--//source-->
                     </div><!--//speech-bubble-->                        
                 </div><!--//author-message-->
-                <div class="clearfix"></div>
+<!--                 <div class="clearfix"></div>
                 <div class="info text-center">
                     <h4 class="sub-title">Get Connected</h4>
                     <ul class="social-icons list-inline">
@@ -307,7 +295,8 @@
                         <li><a href="http://sc.chinaz.com"><i class="fa fa-dribbble"></i></a></li>   
                         <li class="last"><a href="mailto: hello@3rdwavemedia.com"><i class="fa fa-envelope"></i></a></li>              
                     </ul>
-                </div><!--//info-->
+                </div> -->
+                <!--//info-->
             </div><!--//contact-inner-->
         </div><!--//container-->
     </section><!--//contact-->  
