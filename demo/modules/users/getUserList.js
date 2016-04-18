@@ -1,5 +1,5 @@
 exports.module = {
-    utils:require('../../utils.js').utils,
+    utils:require('../../../utils.js').utils,
     callback:null,
     query:null,
     postData:null,

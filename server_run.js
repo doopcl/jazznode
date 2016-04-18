@@ -35,7 +35,7 @@ http.createServer( function (request, response) {
 
     switch(routeInfo.type){
         case 'error':
-            var errInfo = require('./modals/responseErrModal.js').modal;
+            var errInfo = require('./sys/httpErrorEntity.js').entity;
             errInfo.code = 1003;
             errInfo.errMsg = routeInfo.msg;
             errInfo.content = routeInfo;
@@ -125,7 +125,7 @@ var responseErr = function on(err,response) {
     // };
     // console.log(err);
 
-    var html = utils.templateRender('/httperrorpage',{ code:err.code, errMsg:err.errMsg, content:JSON.stringify(err.content) });
+    var html = utils.templateRender('sys/httperrorpage',{ code:err.code, errMsg:err.errMsg, content:JSON.stringify(err.content) });
     // HTTP 状态码: 404 : NOT FOUND
     response.writeHead(err.code, { 'Content-Type' : 'text/html;charset=utf-8' });
     response.write(html);
@@ -137,7 +137,7 @@ var staticResponser = function on(target,response) {
     // 从文件系统中读取请求的文件内容
     fs.readFile(target, function (err, data) {
         if (err) {
-            var errInfo = require('./modals/responseErrModal.js').modal;
+            var errInfo = require('./sys/httpErrorEntity.js').entity;
             errInfo.code = 404;
             errInfo.errMsg = 'HTTP NOT FOUND';
             errInfo.content = err;
@@ -156,7 +156,7 @@ var cgiResponser = function on(target,request,response) {
             if (result) {
                 responseOK(result,response);
             } else {
-                var errInfo = require('./modals/responseErrModal.js').modal;
+                var errInfo = require('./sys/httpErrorEntity.js').entity;
                 errInfo.code = 500;
                 errInfo.errMsg = 'UNKNOWN SERVER ERROR';
                 errInfo.content = err;

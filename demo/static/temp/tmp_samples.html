@@ -11,7 +11,9 @@
             用户ID：
             <input id="useridbox" type="text" />
             <button id="getinfo" type="button">{{buttonTitle}}</button>
-            <div id="messagebox" style="margin-top:10px;padding:10px;background-color: lightgray;"></div>
+            <div id="messagebox" style="margin-top:10px;padding:10px;background-color: lightgray;">
+                (没有数据库的情况下，请求接口会导致web服务停止，该页面为demo，代码只为给大家参考，不保证可用性)
+            </div>
         </div>
         <div style="padding:10px">
             <form name="input" action="/cgipage/samples?alert=1" method="post">
