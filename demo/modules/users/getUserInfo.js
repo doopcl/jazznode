@@ -9,7 +9,7 @@ exports.module = {
         if (callback) { this.callback = callback; }
 
         if (!this.query['userid']) { 
-            exports.module.callback([],1004,'缺少必要参数');
+            exports.module.callback('',1004,'缺少必要参数');
             return; 
         }
 
