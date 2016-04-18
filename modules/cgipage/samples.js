@@ -27,7 +27,7 @@ exports.module = {
         }
         
         if (this.query['alert'] == '1' && this.postData) {
-            html += '<script> alert(\'' + this.postData['user'] + '\'); </script>';
+            html += '<script>alert(\'' + this.postData['user'] + '\');</script>';
         };
 
         if (this.query['cookieset'] == '1') {
@@ -36,7 +36,7 @@ exports.module = {
 
         if (this.query['cookieget'] == '1') {
             var username = this.cookies.get( "user_name" );
-            html += '<script> alert(\'' + username + '\'); </script>';
+            html += '<script>alert(\'' + username + '\');</script>';
         }
 
         this.callback(html);
