@@ -100,6 +100,29 @@ exports.routes = {
 
 若不需要对某Controller下的资源做白名单校验或指定映射，则模块信息中增加 'restrict':false ，则请求到当前Controller的request将直接搜寻Controller同名目录下的资源，如果资源不存在，直接返回404，该节点主要用于对拥有大量静态资源，如图片，css样式等文件的目录做访问权限的开放
 
+### virtual host 支持
+
+修改个人电脑hosts，增加不同的域名，如 
+127.0.0.1  api.jazznode.cn
+127.0.0.1  www.jazznode.cn
+
+然后在virtualHost.js配置文件中增加格式类似以下的配置项
+
+'www.jazznode.cn':
+{
+    dir:'htdocs/www/',
+    route:'routes.js'
+},
+'api.jazznode.cn':
+{
+    dir:'htdocs/api/',
+    route:'routes.js'
+}
+
+之后再配置指定目录的routes.js，指向指定资源即可
+
+当前项目源码中包含有可测试virtual host的源码，测试建议使用80端口，友情提示：使用80端口需要在node server_run.js时使用管理员身份运行（命令前加sudo）
+
 ***
 
 ### v20160419---
