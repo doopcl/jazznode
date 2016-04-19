@@ -111,14 +111,23 @@ exports.routes = {
 然后在virtualHost.js配置文件中增加格式类似以下的配置项
 
 'www.jazznode.cn':
+
 {
+
     dir:'htdocs/www/',
+  
     route:'routes.js'
+
 },
+
 'api.jazznode.cn':
+
 {
+
     dir:'htdocs/api/',
+
     route:'routes.js'
+
 }
 
 之后再配置指定目录的routes.js，指向指定资源即可
