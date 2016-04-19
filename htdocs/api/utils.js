@@ -2,33 +2,30 @@ exports.utils = {
     //根据pathname获得js文件物理地址
     getDirectoryPath : function on (pathname) {
        var path = require('path');
-       var finalPath = path.join(__dirname, pathname);
-       console.log('return directory path:' + finalPath);
-       return finalPath;
+       return path.join(__dirname, pathname);
     },
     //根据传入的sql语句查询数据库，并返回结果
     excuteMySqlQuery : function on (query,callback) {
         var mysql = require('mysql');
         //创建一个connection
         var connection = mysql.createConnection({     
-          host     : 'localhost',       //主机
-          user     : 'doopcl',               //MySQL认证用户名
-          password : '123123',        //MySQL认证用户密码
-          port: '3306',                 //端口号
-          database: 'nodejs', 
-        }); 
+            host     : 'localhost',     //主机
+            user     : 'doopcl',        //MySQL认证用户名
+            password : '123123',        //MySQL认证用户密码
+            port: '3306',               //端口号
+            database: 'nodejs',
+        });
 
-                //创建一个connection
         connection.connect(function(err){
             if (err) { callback(err,null); return;}
             console.log('[connection connect]  succeed!');
-        });  
+        });
         //执行SQL语句
         connection.query(query, function(err, result) {
             if (err) { callback(err,null); return;}
 
             callback(err,result);
-        });  
+        });
         //关闭connection
         connection.end(function(err){
             if (err) { 

@@ -27,91 +27,56 @@ Node.js平台Web Server开(wan)发(ju)框架，轻量级的,开源的,使用简�
 
 ### 路由设置
 
-config/route.js是JazzNode的路由配置表，其格式如下
+htdocs/www/route.js是JazzNode内置demo站点的路由配置表，其格式如下
 
-  exports.routes = {
-
-     '':{
-
-         'type':'static',
-
-         'module':{
-
-             'default':'static/index.html',//保留字段
-
-             'index':'static/index.html',
-
-             'images':'static/images.html',
-
-             'favicon.ico':'static/favicon.ico'
-
-         }
-
-     },
-
-     'cgipage':{
-
-         'type':'cgi',
-
-         'module':{
-
-             'default':'modules/cgipage/samples.js',
-
-             'samples':'modules/cgipage/samples.js',
-
-             'samples2':'modules/cgipage/samples2.js'
-
-         }
-
-     },
-
-     'users':{
-
-         'type':'cgi',
-
-         'module':{
-
-             'info':'modules/users/getuserinfo.js',
-
-             'list':'modules/users/getuserlist.js'
-
-         }
-
-     },
-
-     'source':{
-
-         'type':'static',
-
-         'module':{},
-
-         'restrict':false
-
-     },
-
-     'assets':{
-
-         'type':'static',
-
-         'module':{},
-
-         'restrict':false
-
-     }
-
+exports.routes = {
+    '':{
+        'type':'static',
+        'actions':{
+            'default':'static/index.html',//保留字段
+            'index':'static/index.html',
+            'favicon.ico':'static/favicon.ico'
+        }
+    },
+    'cgipage':{
+        'type':'cgi',
+        'actions':{
+            'default':'controllers/cgipage/samples.js',
+            'samples':'controllers/cgipage/samples.js',
+            'samples2':'controllers/cgipage/samples2.js'
+        }
+    },
+    'users':{
+        'type':'cgi',
+        'actions':{
+            'info':'controllers/users/getuserinfo.js',
+            'list':'controllers/users/getuserlist.js'
+        }
+    },
+    'assets':{
+        'type':'static',
+        'actions':{},
+        'restrict':false //适用于type=static的路由类型（对静态资源请求），当该设置为false时，不会校验当前请求的action是否在actions列表中
+    }
 }
 
-我们约定一级目录为“模块”，二级目录为“方法”（如果是访问静态文件则为资源）
+我们约定一级目录为“Controller”，二级目录为“Action”（如果是访问静态文件则为资源）
 
-如果访问 127.0.0.1/users/info  则对应路由表模块users下的info方法，并执行 modules/users/getuserinfo.js 的相关代码
+如果访问 127.0.0.1/users/info  则对应路由表Controller users下的Action info，并执行 modules/users/getuserinfo.js 的相关代码
 
-访问 127.0.0.1  则对应路由表根模块下的default资源，并加载static/index.html，如果想给某模块设置默认方法或者资源，就在模块信息下设置default为指定的方法对应代码文件地址或静态资源地址
+访问 127.0.0.1  则对应路由表根Controller下的Action default，并加载static/index.html，如果想给某Controller设置默认Action或者资源，就在Controller信息下设置default为指定的Action对应代码文件地址或静态资源地址
 
-支持设置模块的响应类型：静态资源，cgi服务（static，cgi），JazzNode根据不同类型，做出不同处理并返回
+支持设置Controller的响应类型：静态资源，cgi服务（static，cgi），JazzNode根据不同类型，做出不同处理并返回
 
-若不需要对某模块下的资源做白名单校验或指定映射，则模块信息中增加 'restrict':false ，则请求到当前模块的request将直接搜寻模块同名目录下的资源，如果资源不存在，直接返回404，该节点主要用于对拥有大量静态资源，如图片，css样式等文件的目录做访问权限的开放
+若不需要对某Controller下的资源做白名单校验或指定映射，则模块信息中增加 'restrict':false ，则请求到当前Controller的request将直接搜寻Controller同名目录下的资源，如果资源不存在，直接返回404，该节点主要用于对拥有大量静态资源，如图片，css样式等文件的目录做访问权限的开放
 
 ***
+
+### v20160419---
+* Web Server支持virtual host特性
+* 代码重构，Web Server功能模块和项目内置演示demo站点解耦
+* 加入了virtual host的测试demo，具体测试方法在virtualhost.js配置文件中说明
+
 
 ### v20160415---
 * 功能聚合，不再支持RESTful API原生支持（json格式数据返回）,统一为cgi模式，返回json格式交由方法内部实现即可

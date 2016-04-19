@@ -1,5 +1,5 @@
 exports.module = {
-    utils:require('../../../utils.js').utils,
+    utils:require('../../utils.js').utils,
     callback:null,
     query:null,
     postData:null,
@@ -11,7 +11,8 @@ exports.module = {
             title: 'JazzNode - The Easy Use Web Server For Node.js',
             buttonTitle:'点我请求api'
         };
-        var html = this.utils.templateRender('/demo/static/temp/tmp_samples',data);
+
+        var html = this.utils.templateRender('/static/samples',data);
 
         if (this.query['upload'] == '1' && this.postData["resource"] != undefined) {
             var fs = require('fs');

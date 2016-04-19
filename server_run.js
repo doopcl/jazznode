@@ -14,25 +14,28 @@ var fs = require('fs');
 var url = require('url');
 var querystring = require("querystring");
 //开发工具类
-var utils = require('./utils.js').utils;
 var mime = require('mime');
 var Cookies = require('cookies');
+var dirpathHelper = require('path');
 
-//route map
-var routeMap = require('./configs/routes.js').routes;
+//虚拟host配置
+var domains = require('./configs/virtualHost.js').domains;
 
 var port = 8086;
 
 // 创建服务器
-http.createServer( function (request, response) {  
+http.createServer( function (request, response) {
+    console.log('HOST:' + request.headers.host);
     console.log('METHOD:' + request.method);
     // 解析请求，包括文件名
     var pathname = url.parse(request.url).pathname;
     console.log("Request for " + pathname + " received.");
 
-    var routeInfo = getRouteInfo(pathname);
-    console.log(routeInfo);
-
+    //如果没有命中指定的域名，则使用默认域名设置反馈 HTTP 1.0可能没有header，需要做处理
+    var domainInfo = domains[request.headers.host] ? domains[request.headers.host] : domains['localhost'];
+    // console.log('./' + domainInfo.dir + domainInfo.route);
+    var routeInfo = getRouteInfo(pathname, require('./' + domainInfo.dir + domainInfo.route).routes);
+    // console.log(routeInfo);
     switch(routeInfo.type){
         case 'error':
             var errInfo = require('./sys/httpErrorEntity.js').entity;
@@ -42,10 +45,11 @@ http.createServer( function (request, response) {
             responseErr(errInfo,response);
         break;
         case 'static':
-            staticResponser(utils.getDirectoryPath(routeInfo.target),response);
+            //静态资源使用的fs.readFile，需要磁盘绝对地址，所以require path 库
+            staticResponser(dirpathHelper.join(__dirname,domainInfo.dir + routeInfo.target), response);
         break;
         case 'cgi':
-            cgiResponser(utils.getDirectoryPath(routeInfo.target),request,response);
+            cgiResponser('./' + domainInfo.dir + routeInfo.target, request, response);
         break;
     }
 }).listen(port);
@@ -53,23 +57,23 @@ http.createServer( function (request, response) {
 // 控制台会输出以下信息
 console.log('JazzNode HTTP Server running at http://127.0.0.1:' + port);
 
-var getRouteInfo = function on(pathname) {
+var getRouteInfo = function on(pathname,routeMap) {
 
-    var getRouteInfoFromMap = function on(moduleName,actionName) {
+    var getRouteInfoFromMap = function on(controllerName,actionName) {
         var routeInfo = {'type':'','target':'','msg':''};
-        var subRoute = routeMap[moduleName];
+        var subRoute = routeMap[controllerName];
         if (!subRoute) {  
             routeInfo = {'type':'error','target':'','msg':'Unavaliable Module'};
             return routeInfo;
         }
         //如果restrict == false,当前module不做action的exist校验，target直接设置为pathname
-        var targetModule = subRoute.restrict == false ? pathname : subRoute.module[actionName];
-        if (!targetModule) {  
+        var action = subRoute.restrict == false ? pathname : subRoute.actions[actionName];
+        if (!action) {  
             routeInfo = {'type':'error','target':'','msg':'Unavaliable Action'};
             return routeInfo;
         }
         routeInfo.type = subRoute.type;
-        routeInfo.target = targetModule;
+        routeInfo.target = action;
         return routeInfo;
     };
 
@@ -100,7 +104,6 @@ var getRouteInfo = function on(pathname) {
 var responseOK = function on (respText,response,pathname) {
     // HTTP 状态码: 200 : OK
     // Content Type: text/plain
-
     response.writeHead(200, {
         'Content-Type': pathname ? mime.lookup(pathname) : 'text/html;charset=utf-8',
         'Cache-Control': 'no-cache'
@@ -123,9 +126,7 @@ var responseErr = function on(err,response) {
     //     content:null,  //内部错误信息透传
     //     errMsg:null   //错误信息
     // };
-    // console.log(err);
-
-    var html = utils.templateRender('sys/httperrorpage',{ code:err.code, errMsg:err.errMsg, content:JSON.stringify(err.content) });
+    var html = require('art-template')(dirpathHelper.join(__dirname,'sys/httperrorpage'),{ code:err.code, errMsg:err.errMsg, content:JSON.stringify(err.content) });
     // HTTP 状态码: 404 : NOT FOUND
     response.writeHead(err.code, { 'Content-Type' : 'text/html;charset=utf-8' });
     response.write(html);
