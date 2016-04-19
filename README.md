@@ -102,6 +102,8 @@ exports.routes = {
 
 ### virtual host 支持
 
+JazzNode最新版已支持virtual host功能，支持单IP同时创建多个域名的独立站点，项目内置demo已包含virtual host特性的体验，体验方式如下：
+
 修改个人电脑hosts，增加不同的域名，如 
 
 127.0.0.1  api.jazznode.cn
@@ -132,7 +134,7 @@ exports.routes = {
 
 之后再配置指定目录的routes.js，指向指定资源即可
 
-当前项目源码中包含有可测试virtual host的源码，测试建议使用80端口，友情提示：使用80端口需要在node server_run.js时使用管理员身份运行（命令前加sudo）
+测试建议使用80端口，友情提示：使用80端口需要在node server_run.js时使用管理员身份运行（命令前加sudo）
 
 ***
 
