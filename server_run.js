@@ -3,7 +3,6 @@
 /*  
     新node环境下需要先安装以下插件
     npm install mime
-    npm install mysql
     npm install art-template
     npm install formidable
     npm install cookies
