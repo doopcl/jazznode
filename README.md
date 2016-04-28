@@ -11,8 +11,6 @@ Node.js平台Web Server开(wan)发(ju)框架，轻量级的,开源的,使用简�
 
 > npm install mime
 
-> npm install mysql
-
 > npm install art-template
 
 > npm install formidable
