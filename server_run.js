@@ -22,8 +22,39 @@ var domains = require('./configs/virtualHost.js').domains;
 
 var port = 8086;
 
-// 创建服务器
-http.createServer( function (request, response) {
+var cluster = require('cluster');
+var cpuCounts = require('os').cpus().length;
+
+//子进程死亡计数器，如果死亡次数过多，则需要停止创建，并提示服务管理员检查程序
+var clusterDeathCount = 0;
+
+var createHttpServers = function on(){
+    if (cluster.isMaster) {
+        //创建工作进程
+        for (var i = 0; i < cpuCounts; i++) {
+            cluster.fork();
+        };
+        //出现死亡进程后
+        cluster.on('death', function(worker) {
+            console.log('worker ' + worker.pid + ' died');
+            if (clusterDeathCount > 30) {
+                console.log('too more death,please check Code');
+                return;
+            }
+            clusterDeathCount++;
+            cluster.fork();//重新开启新的进程
+        });
+    } else {
+        // 创建服务器
+        var httpServer = http.createServer();
+        httpServer.on('request',requestHandle);
+        httpServer.listen(port);
+        // 控制台会输出以下信息
+        console.log('JazzNode HTTP Server running at http://127.0.0.1:' + port);
+    }
+}
+
+var requestHandle = function on(request, response) {
     console.log('HOST:' + request.headers.host);
     console.log('METHOD:' + request.method);
     // 解析请求，包括文件名
@@ -51,10 +82,7 @@ http.createServer( function (request, response) {
             cgiResponser('./' + domainInfo.dir + routeInfo.target, request, response);
         break;
     }
-}).listen(port);
-
-// 控制台会输出以下信息
-console.log('JazzNode HTTP Server running at http://127.0.0.1:' + port);
+}
 
 var getRouteInfo = function on(pathname,routeMap) {
 
@@ -168,6 +196,8 @@ var cgiResponser = function on(target,request,response) {
     var action = require(target);
     action.module.query = getQueryString(request);
     action.module.cookies = new Cookies(request,response);
+    action.module.request = request;
+    action.module.response = response;
 
     if (request.method == "POST") {
         receiveFormData(request,function on(postData){
@@ -217,4 +247,5 @@ var getQueryString = function on(request){
     return query;
 };
 
-
+//最后一行执行创建过程
+createHttpServers();

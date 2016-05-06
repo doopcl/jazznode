@@ -3,6 +3,8 @@ exports.module = {
     query:null,
     postData:null,
     cookies:null,
+    request:null,
+    response:null,
     excute:function on(callback) {
         //可能存在另外一种写法是在外面对callback赋值，这里可以不传入，做判断的目的是为了兼容闭包样式的写法
         if (callback) { this.callback = callback; }
