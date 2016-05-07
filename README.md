@@ -136,6 +136,10 @@ JazzNode最新版已支持virtual host功能，支持单IP同时创建多个域�
 
 ***
 
+### v20160506---
+* Web Server支持多核CPU下创建多个服务进程
+* 支持向内部action中传递request，response对象
+
 ### v20160419---
 * Web Server支持virtual host特性
 * 代码重构，Web Server功能模块和项目内置演示demo站点解耦
