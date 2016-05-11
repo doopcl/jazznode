@@ -1,4 +1,4 @@
-exports.BaseAction = function on(){
+module.exports = () => {
     this.callback = null;
     this.query = null;
     this.postData = null;
