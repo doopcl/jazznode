@@ -12,7 +12,6 @@
             <input id="useridbox" type="text" />
             <button id="getinfo" type="button">{{buttonTitle}}</button>
             <div id="messagebox" style="margin-top:10px;padding:10px;background-color: lightgray;">
-                (没有数据库的情况下，请求接口会导致web服务停止，该页面为demo，代码只为给大家参考，不保证可用性)
             </div>
         </div>
         <div style="padding:10px">
@@ -37,7 +36,7 @@
 <script>
     $(document).ready(function(){
         $("#getinfo").click(function(){
-            var action = '/users/info?userid=' + $("#useridbox").val();
+            var action = '/developer/info?userid=' + $("#useridbox").val();
             $.get(action, function(result) {
                 $("#messagebox").html(JSON.stringify(result));
             });

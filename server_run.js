@@ -180,7 +180,7 @@ var staticResponser = function on(target,response) {
 var cgiResponser = function on(target,request,response) {
     //内部子函数放在最顶部
     var excuteModule = function on() {
-        action.module.excute(function on(result, code, err) {
+        action.excute(function on(result,code,err){
             if (result) {
                 responseOK(result,response);
             } else {
@@ -190,18 +190,18 @@ var cgiResponser = function on(target,request,response) {
                 errInfo.content = err;
                 responseErr(errInfo,response);
             }
-        });
+        })
     };
 
-    var action = require(target);
-    action.module.query = getQueryString(request);
-    action.module.cookies = new Cookies(request,response);
-    action.module.request = request;
-    action.module.response = response;
+    var action = require(target).getInstance();
+    action.query = getQueryString(request);
+    action.cookies = new Cookies(request,response);
+    action.request = request;
+    action.response = response;
 
     if (request.method == "POST") {
         receiveFormData(request,function on(postData){
-            action.module.postData = postData;
+            action.postData = postData;
             excuteModule();
         });
     } else {

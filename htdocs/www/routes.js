@@ -15,17 +15,16 @@ exports.routes = {
             'samples2':'controllers/cgipage/samples2.js'
         }
     },
-    'users':{
-        'type':'cgi',
-        'actions':{
-            'info':'controllers/users/getuserinfo.js',
-            'list':'controllers/users/getuserlist.js'
-        }
-    },
     'assets':{
         'type':'static',
         'actions':{},
         'restrict':false //适用于type=static的路由类型（对静态资源请求），当该设置为false时，不会校验当前请求的action是否在actions列表中
+    },
+    'developer':{
+        'type':'cgi',
+        'actions':{
+            'info':'controllers/developer/info.js'
+        }
     }
 }
 

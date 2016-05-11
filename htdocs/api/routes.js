@@ -1,9 +1,8 @@
 exports.routes = {
-    'users':{
+    'developer':{
         'type':'cgi',
         'actions':{
-            'info':'controllers/users/getuserinfo.js',
-            'list':'controllers/users/getuserlist.js'
+            'info':'controllers/developer/info.js'
         }
     }
 }

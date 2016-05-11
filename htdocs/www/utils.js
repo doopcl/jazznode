@@ -5,15 +5,15 @@ exports.utils = {
        return path.join(__dirname, pathname);
     },
     //根据传入的sql语句查询数据库，并返回结果
-    excuteMySqlQuery : function on (query,callback) {
+    excuteMySqlQuery : function on (query,params,callback) {
         var mysql = require('mysql');
         //创建一个connection
         var connection = mysql.createConnection({     
             host     : 'localhost',     //主机
-            user     : 'doopcl',        //MySQL认证用户名
-            password : '123123',        //MySQL认证用户密码
+            user     : 'root',        //MySQL认证用户名
+            password : '',        //MySQL认证用户密码
             port: '3306',               //端口号
-            database: 'nodejs',
+            database: 'media_cloud',
         });
 
         connection.connect(function(err){
@@ -21,7 +21,7 @@ exports.utils = {
             console.log('[connection connect]  succeed!');
         });
         //执行SQL语句
-        connection.query(query, function(err, result) {
+        connection.query(query, params ,function(err, result) {
             if (err) { callback(err,null); return;}
 
             callback(err,result);
