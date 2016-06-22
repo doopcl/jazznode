@@ -69,7 +69,7 @@ var requestHandle = function on(request, response) {
     switch(routeInfo.type){
         case 'error':
             var errInfo = require('./sys/httpErrorEntity.js').entity;
-            errInfo.code = 1003;
+            errInfo.code = 400; //Bad Request Status Code
             errInfo.errMsg = routeInfo.msg;
             errInfo.content = routeInfo;
             responseErr(errInfo,response);
@@ -123,7 +123,6 @@ var getRouteInfo = function on(pathname,routeMap) {
         if (info.type != 'error' ) { return info; }
         return getRouteInfoFromMap(array[0],'default');
     }
-
     return getRouteInfoFromMap(array[0],array[1]);
 };
 
@@ -154,7 +153,6 @@ var responseErr = function on(err,response) {
     //     errMsg:null   //错误信息
     // };
     var html = require('art-template')(dirpathHelper.join(__dirname,'sys/httperrorpage'),{ code:err.code, errMsg:err.errMsg, content:JSON.stringify(err.content) });
-    // HTTP 状态码: 404 : NOT FOUND
     response.writeHead(err.code, { 'Content-Type' : 'text/html;charset=utf-8' });
     response.write(html);
     response.end();
@@ -166,7 +164,7 @@ var staticResponser = function on(target,response) {
     fs.readFile(target, function (err, data) {
         if (err) {
             var errInfo = require('./sys/httpErrorEntity.js').entity;
-            errInfo.code = 404;
+            errInfo.code = 404;//File Not Found status code
             errInfo.errMsg = 'HTTP NOT FOUND';
             errInfo.content = err;
             responseErr(errInfo,response);
@@ -185,7 +183,7 @@ var cgiResponser = function on(target,request,response) {
                 responseOK(result,response);
             } else {
                 var errInfo = require('./sys/httpErrorEntity.js').entity;
-                errInfo.code = 500;
+                errInfo.code = 500; //Internal Server Error Status Code
                 errInfo.errMsg = 'UNKNOWN SERVER ERROR';
                 errInfo.content = err;
                 responseErr(errInfo,response);
